@@ -1,8 +1,79 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     School:
+ *       type: object
+ *       required:
+ *         - name
+ *         - location
+ *         - dateCreated
+ *         - admin
+ *       properties:
+ *         id:
+ *           type: string
+ *           example: 67ce6b0c1d4372b948912cb8
+ *           description: The auto-generated id of a school
+ *         name:
+ *           type: string
+ *           example: HolyGhost Primary/Secondary School
+ *           description: The name of the school
+ *         location:
+ *           type: string
+ *           example: Water Works Rd Abakaliki, Ebonyi state
+ *           decription: The location of the school
+ *         dateCreated:
+ *           type: string
+ *           format: date
+ *           example: 2000-08-18
+ *           description: The date of school registration
+ *         admin:
+ *           type: string
+ *           example: Mrs Ogbunna Felicia
+ *           description: The school administrator
+ *       example:
+ *         id: 67ce6b0c1d4372b948912cb8
+ *         name: HolyGhost Primary/Secondary School
+ *         location: Water Works Rd Abakaliki, Ebonyi State
+ *         dateCreated: 2000-08-18
+ *         admin: Mrs Ogbunna Felicia
+ */
+
 const express = require("express");
 const router = express.Router();
+const School = require("../models/school.model");
 
-const School = require("../models/school.model")
+/**
+ * @swagger
+ * tags:
+ *  name: School
+ *  description: The Schools API
+ */
 
+/**
+ * @swagger
+ * /api/schools:
+ *  post:
+ *    tags: [School]
+ *    summary: Add a new School
+ *    requestBody:
+ *      description: Create a new school
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/School'
+ *      required: true
+ *    responses:
+ *      200:
+ *        description: Successful Operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/School'
+ *      500: 
+ *        description: Internal Server Error
+ *      
+ */
 router.post('/schools', async(req, res) => {
   try{
     const school = await School.create(req.body);
@@ -12,6 +83,26 @@ router.post('/schools', async(req, res) => {
   }
 });
 
+
+/**
+ * @swagger
+ * /api/schools:
+ *   get:
+ *     tags: [School]
+ *     summary: Get all schools
+ *     responses:
+ *       200:
+ *         description: Successful operation
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/School'
+ *       500:
+ *         description: Internal server error
+ * 
+ */
 router.get('/schools', async (req, res) => {
   try{
     const schools = await School.find({});
