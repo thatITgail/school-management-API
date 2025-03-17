@@ -20,7 +20,7 @@
  *           type: array
  *           items:
  *             type: string
- *           example: ["67d11e4bf9050e52315933d6", "67d1333706340c4a0c156fdc"]
+ *           example: ["67d11e4bf9050e52315933d6"]
  *           description: The classes IDs offering the subjects she teaches
  *         school:
  *           type: string
