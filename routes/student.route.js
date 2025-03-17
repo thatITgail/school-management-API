@@ -32,6 +32,7 @@
  *           description: The school ID to which the class belongs
  *       example:
  *         id: 67ce6b0c1d4372b948912eaf
+ *         age: 12
  *         name: Eze Michelle
  *         class: 67d11e4bf9050e52315933d6
  *         school: 67ce6b0c1d4372b948912cb8
