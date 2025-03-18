@@ -19,7 +19,7 @@
  *         class:
  *           type: string
  *           example: 67d11e4bf9050e52315933d6
- *           description: The class ID wher the subject isoffered
+ *           description: The class ID where the subject is offered
  *         school:
  *           type: string
  *           example: 67ce6b0c1d4372b948912cb8
@@ -48,8 +48,8 @@ const Teacher = require("../models/teacher.model")
 /**
  * @swagger
  * tags:
- *  name: Student
- *  description: The Student API
+ *  name: Subject
+ *  description: The Subject API
  */
 
 /**
@@ -99,6 +99,34 @@ router.post('/subjects', async (req, res) => {
 });
 
 
+/**
+ * @swagger
+ * /api/{id}/subjects:
+ *   get:
+ *     tags: [Subject]
+ *     summary: Get all subjects offered in a class of particular a school
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: The class Id 
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: All subjects offered in a class
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Subject'
+ *       404:
+ *         description: No class found
+ *       500:
+ *         description: Internal server error
+ * 
+ */
 router.get('/:id/subjects', async (req, res)=>{
   try{
     console.log(`The class is: ${req.params.id}`)

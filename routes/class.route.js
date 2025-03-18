@@ -34,8 +34,10 @@
  *           example: 67ce6b0c1d4372b948912cb8 
  *           description: Reference to subjects offered
  *           nullable: true
- *         teacher: 
- *           type: string
+ *         teachers: 
+ *           type: array
+ *           items:
+ *             type: string
  *           example: 67d787976129d7c916e68bbb
  *           description: Reference to the teacher 
  *           nullable: true
@@ -125,7 +127,7 @@ router.post('/classes', async (req, res) => {
 router.get('/:id/classes', async(req, res) => {
   try{
     // console.log(`The school id: ${req.params.id}`)
-   const classes = await Class.find({school: req.params.id}).populate("students").populate("teacher");
+   const classes = await Class.find({school: req.params.id}).populate("students").populate("teachers");
    if(classes.length === 0){
     return res.status(404).json({message: "No class found in this school"})
    }

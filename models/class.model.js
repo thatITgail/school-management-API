@@ -20,10 +20,10 @@ const ClassSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subject"
     }], 
-    teacher: {
+    teachers: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Teacher"
-    }
+    }]
   }, 
   {
     timestamps: true
